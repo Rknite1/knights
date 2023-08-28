@@ -1,0 +1,165 @@
+[gd_scene load_steps=30 format=3 uid="uid://jtcumgdn0vp"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_3pobm"]
+[ext_resource type="Texture2D" uid="uid://brqiph40ao0dk" path="res://pack_loreon_char_free 2/sword_1/attack1_1.png" id="1_s1fsl"]
+[ext_resource type="Texture2D" uid="uid://d3amt6tnu74my" path="res://pack_loreon_char_free 2/sword_1/attack1_2.png" id="2_ui322"]
+[ext_resource type="Texture2D" uid="uid://dpnxbaex0cntj" path="res://pack_loreon_char_free 2/sword_1/attack1_3.png" id="3_snefu"]
+[ext_resource type="Texture2D" uid="uid://40isa4fbv1lc" path="res://pack_loreon_char_free 2/sword_1/attack1_4.png" id="4_c3ufw"]
+[ext_resource type="Texture2D" uid="uid://doi5hbxsoqkbh" path="res://pack_loreon_char_free 2/sword_1/attack1_5.png" id="5_spoko"]
+[ext_resource type="Texture2D" uid="uid://dejd2ltm4qymf" path="res://pack_loreon_char_free 2/sword_1/attack1_6.png" id="6_83ewu"]
+[ext_resource type="Texture2D" uid="uid://5ifwhmpvhsc0" path="res://pack_loreon_char_free 2/sword_1/fall_back_1.png" id="7_mdmnj"]
+[ext_resource type="Texture2D" uid="uid://bbh4cg7cckksc" path="res://pack_loreon_char_free 2/sword_1/fall_back_2.png" id="8_pdhly"]
+[ext_resource type="Texture2D" uid="uid://xy6rr3vxonky" path="res://pack_loreon_char_free 2/sword_1/fall_back_3.png" id="9_wklw8"]
+[ext_resource type="Texture2D" uid="uid://dkvg1ovhwcul0" path="res://pack_loreon_char_free 2/sword_1/fall_back_4.png" id="10_koirb"]
+[ext_resource type="Texture2D" uid="uid://5now00q4k1dr" path="res://pack_loreon_char_free 2/sword_1/fall_back_5.png" id="11_351fu"]
+[ext_resource type="Texture2D" uid="uid://cgqt55g7r0bo1" path="res://pack_loreon_char_free 2/sword_1/jump_1.png" id="12_gql6f"]
+[ext_resource type="Texture2D" uid="uid://txmodq8rluwd" path="res://pack_loreon_char_free 2/sword_1/jump_2.png" id="13_l0m4l"]
+[ext_resource type="Texture2D" uid="uid://cnvttdgbmn7pf" path="res://pack_loreon_char_free 2/sword_1/jump_3.png" id="14_52thw"]
+[ext_resource type="Texture2D" uid="uid://drxppm53gg4n1" path="res://pack_loreon_char_free 2/sword_1/jump_4.png" id="15_x83bw"]
+[ext_resource type="Texture2D" uid="uid://b53a6s800d4ul" path="res://pack_loreon_char_free 2/sword_1/jump_5.png" id="16_br6kr"]
+[ext_resource type="Texture2D" uid="uid://cwiyu6quchpbs" path="res://pack_loreon_char_free 2/sword_1/ready_1.png" id="17_daaim"]
+[ext_resource type="Texture2D" uid="uid://b486hfgow2ek4" path="res://pack_loreon_char_free 2/sword_1/ready_2.png" id="18_7fxml"]
+[ext_resource type="Texture2D" uid="uid://chetakdk06qjt" path="res://pack_loreon_char_free 2/sword_1/ready_3.png" id="19_3rw3s"]
+[ext_resource type="Texture2D" uid="uid://boj45btkyinic" path="res://pack_loreon_char_free 2/sword_1/walk_1.png" id="21_7ahmm"]
+[ext_resource type="Texture2D" uid="uid://dpd0mjibn2v8t" path="res://pack_loreon_char_free 2/sword_1/walk_2.png" id="22_7kb8l"]
+[ext_resource type="Texture2D" uid="uid://buyod0pvt8lws" path="res://pack_loreon_char_free 2/sword_1/walk_3.png" id="23_xcpxa"]
+[ext_resource type="Texture2D" uid="uid://ctxyb5lq3ro3y" path="res://pack_loreon_char_free 2/sword_1/walk_4.png" id="24_pjmu2"]
+[ext_resource type="Texture2D" uid="uid://hnmbywt6j42t" path="res://pack_loreon_char_free 2/sword_1/walk_5.png" id="25_mfgxp"]
+[ext_resource type="Texture2D" uid="uid://dp36oqtjb6jgs" path="res://pack_loreon_char_free 2/sword_1/walk_6.png" id="26_vs66m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgn6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s1fsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ui322")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_snefu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c3ufw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_spoko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_83ewu")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7kf2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_mdmnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pdhly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wklw8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_koirb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_351fu")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_gql6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_l0m4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_52thw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x83bw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_br6kr")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_daaim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7fxml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3rw3s")
+}],
+"loop": true,
+"name": &"ready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_7ahmm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7kb8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_xcpxa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_pjmu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_mfgxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_vs66m")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iokka"]
+height = 32.0
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_3pobm")
+
+[node name="attack" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, -10)
+sprite_frames = SubResource("SpriteFrames_jgn6k")
+animation = &"attack"
+
+[node name="animate" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7kf2p")
+animation = &"walk"
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="attacktimer" type="Timer" parent="."]
+
+[node name="Earea" type="Area2D" parent="."]
+
+[node name="Ecollision" type="CollisionShape2D" parent="Earea"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_iokka")
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
+[connection signal="area_entered" from="Earea" to="." method="_on_earea_area_entered"]
+[connection signal="body_shape_entered" from="Earea" to="." method="_on_earea_body_shape_entered"]

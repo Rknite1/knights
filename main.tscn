@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://22oebphwmjl4"]
+
+[ext_resource type="PackedScene" uid="uid://b254jgyjn0ayk" path="res://player.tscn" id="1_0trw4"]
+[ext_resource type="Script" path="res://main.gd" id="1_1kyjf"]
+[ext_resource type="PackedScene" uid="uid://clg6ea7n1su8p" path="res://background.tscn" id="2_p4ddo"]
+[ext_resource type="PackedScene" uid="uid://jtcumgdn0vp" path="res://enemy.tscn" id="3_j41vg"]
+
+[sub_resource type="Curve2D" id="Curve2D_j3myr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 65, 835, 0, 0, 0, 0, 65, 836, 0, 0, 0, 0, 252, 745, 0, 0, 0, 0, 413, 716, 0, 0, 0, 0, 65, 835)
+}
+point_count = 5
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_1kyjf")
+enemy_scene = ExtResource("3_j41vg")
+
+[node name="background" parent="." instance=ExtResource("2_p4ddo")]
+position = Vector2(2, 0)
+
+[node name="area" type="Area2D" parent="background"]
+
+[node name="collision" type="CollisionShape2D" parent="background/area"]
+
+[node name="player" parent="." instance=ExtResource("1_0trw4")]
+position = Vector2(488, 187)
+scale = Vector2(5.912, 5)
+
+[node name="enemy" parent="." instance=ExtResource("3_j41vg")]
+position = Vector2(622, 192)
+scale = Vector2(5, 5)
+
+[node name="attackT" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_j3myr")
+
+[node name="spawn" type="PathFollow2D" parent="path"]
+position = Vector2(65, 835)
+rotation = 1.5708
+
+[connection signal="area_entered" from="background/area" to="." method="_on_area_area_entered"]
+[connection signal="area_shape_entered" from="background/area" to="." method="_on_area_area_shape_entered"]
+[connection signal="body_entered" from="background/area" to="." method="_on_area_body_entered"]
+[connection signal="body_shape_entered" from="background/area" to="." method="_on_area_body_shape_entered"]
+[connection signal="timeout" from="attackT" to="player" method="_on_attack_t_timeout"]
+[connection signal="timeout" from="attackT" to="enemy" method="_on_attack_t_timeout"]

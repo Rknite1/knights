@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://clg6ea7n1su8p"]
+
+[ext_resource type="Texture2D" uid="uid://bsbsvw54j8via" path="res://stringstar fields/background_0.png" id="1_3u7lo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yscig"]
+load_path = "res://.godot/imported/Mossy - MossyHills.png-30050d2c8a509727b54a940c0c9eea49.ctex"
+
+[node name="background" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1010, 534.5)
+scale = Vector2(7.32639, 6.32778)
+texture = ExtResource("1_3u7lo")
+
+[node name="slime1" type="StaticBody2D" parent="."]
+
+[node name="slime" type="Sprite2D" parent="slime1"]
+modulate = Color(0.180392, 1, 1, 1)
+position = Vector2(289, 1552)
+scale = Vector2(1.09644, 0.907714)
+texture = SubResource("CompressedTexture2D_yscig")
