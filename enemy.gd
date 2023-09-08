@@ -44,6 +44,5 @@ func walking(delta):
 	$animate.play()
 	position.x += speed * delta
 
-
-
-
+func _on_earea_area_entered(area):
+	dying()

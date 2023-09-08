@@ -182,7 +182,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_o7unk")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 8.0
 }]
@@ -196,7 +196,8 @@ script = ExtResource("1_qiuso")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wk8f5")
-animation = &"run"
+animation = &"jump"
+offset = Vector2(0.064, 2.08189e-12)
 
 [node name="jumpend" type="Timer" parent="animations"]
 
@@ -204,6 +205,7 @@ animation = &"run"
 wait_time = 1.1
 
 [node name="attack" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_16uwm")
 animation = &"attack"
 frame = 3
@@ -213,14 +215,11 @@ offset = Vector2(-10, -8)
 [node name="area" type="Area2D" parent="attack"]
 
 [node name="collision" type="CollisionShape2D" parent="attack/area"]
-position = Vector2(-18, -4)
+position = Vector2(-17, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iwq7i")
 
-[node name="attackend" type="Timer" parent="attack"]
-wait_time = 0.7
-
 [connection signal="timeout" from="animations/jumpend" to="." method="_on_jumpend_timeout"]
 [connection signal="timeout" from="animations/rollend" to="." method="_on_rollend_timeout"]
+[connection signal="animation_finished" from="attack" to="." method="_on_attack_animation_finished"]
 [connection signal="area_entered" from="attack/area" to="." method="_on_area_area_entered"]
-[connection signal="timeout" from="attack/attackend" to="." method="_on_attackend_timeout"]

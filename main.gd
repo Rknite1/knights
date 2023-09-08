@@ -14,8 +14,7 @@ func _process(delta):
 		$player/attack.show()
 		$player/animations.hide()
 		$player/attack.animation = "attack"
-		$player/attack.play()
-		$player/attack/attackend.start()
+		$player/attack.play()		
 		$attackT.start()
 		if $player/animations.flip_h == true:
 			$player/attack.flip_h = true
