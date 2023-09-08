@@ -71,7 +71,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_351fu")
 }],
-"loop": true,
+"loop": false,
 "name": &"die",
 "speed": 5.0
 }, {
@@ -147,6 +147,7 @@ animation = &"attack"
 [node name="animate" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7kf2p")
 animation = &"die"
+frame_progress = 0.753305
 
 [node name="dieend" type="Timer" parent="animate"]
 wait_time = 0.9

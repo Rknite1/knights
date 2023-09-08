@@ -86,20 +86,22 @@ func _process(delta):
 func _on_attackend_timeout():
 	$attack.stop()
 
-
 func _on_rollend_timeout():
 	$animations.stop() # Replace with function body.
-
 
 func _on_jumpend_timeout():
 	$animations.stop()
 	playing = false 
-	
-
 
 func _on_attack_2_timeout():
 	pass # Replace with function body.
 
+func _on_area_area_entered(area_that_is_entered):
+	if $attack.is_playing():
+		print("you've hit the enemy:", area_that_is_entered)
+		area_that_is_entered.get_parent().dying()
+		# we've hit the enemy
+	else:
+		# we're not attacking so ignore the action
+		return
 
-func _on_area_area_entered(area):
-	pass # Replace with function body.

@@ -3,6 +3,7 @@ extends CharacterBody2D
 var speed = 105
 var animate = false
 var die = false
+var is_reviving = false
 
 var is_dying = false # set to true when the enemy is dying
 
@@ -29,6 +30,11 @@ func dying():
 	is_dying = true
 	$animate.animation = "die"
 	$animate.play()
+
+func resurection():
+	is_reviving = true
+	$animate.animation = "die"
+	$animate.play_backwards()
 	
 func walking(delta):
 	if is_dying:
