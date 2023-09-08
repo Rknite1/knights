@@ -146,7 +146,7 @@ animation = &"attack"
 
 [node name="animate" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7kf2p")
-animation = &"walk"
+animation = &"die"
 
 [node name="dieend" type="Timer" parent="animate"]
 wait_time = 0.9

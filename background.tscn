@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bsbsvw54j8via" path="res://stringstar fields/background_0.png" id="1_3u7lo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yscig"]
-load_path = "res://.godot/imported/Mossy - MossyHills.png-30050d2c8a509727b54a940c0c9eea49.ctex"
 
 [node name="background" type="StaticBody2D"]
 
