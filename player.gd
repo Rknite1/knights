@@ -9,6 +9,8 @@ var playing = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$attack.hide()
+	$attack/area.position.x = 22
+	$attack/area.position.y = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -29,6 +31,8 @@ func _process(delta):
 		$animations.flip_v = false
 		$animations/jumpend.start()
 	if Input.is_action_pressed("right"):
+		$attack/area.position.x = 22
+		$attack/area.position.y = 0
 		$animations.show()
 		$attack.hide()
 		position.x += 5
@@ -40,6 +44,8 @@ func _process(delta):
 			$animations.hide()
 			$attack.show()
 	if Input.is_action_pressed("left"):
+		$attack/area.position.x = -22
+		$attack/area.position.y = 0
 		$animations.show()
 		$attack.hide()
 		position.x -= 5
@@ -73,9 +79,6 @@ func _process(delta):
 	
 			
 		# See the note below about boolean assignment.
-		
-	
-
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 
@@ -96,13 +99,6 @@ func _on_jumpend_timeout():
 
 func _on_attack_2_timeout():
 	pass # Replace with function body.
-
-
-
-
-
-
-
 
 
 func _on_area_area_entered(area):

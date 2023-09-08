@@ -23,7 +23,7 @@ position = Vector2(2, 0)
 [node name="collision" type="CollisionShape2D" parent="background/area"]
 
 [node name="player" parent="." instance=ExtResource("1_0trw4")]
-position = Vector2(488, 187)
+position = Vector2(259, 183)
 scale = Vector2(5.912, 5)
 
 [node name="enemy" parent="." instance=ExtResource("3_j41vg")]
@@ -40,9 +40,5 @@ curve = SubResource("Curve2D_j3myr")
 position = Vector2(65, 835)
 rotation = 1.5708
 
-[connection signal="area_entered" from="background/area" to="." method="_on_area_area_entered"]
-[connection signal="area_shape_entered" from="background/area" to="." method="_on_area_area_shape_entered"]
-[connection signal="body_entered" from="background/area" to="." method="_on_area_body_entered"]
-[connection signal="body_shape_entered" from="background/area" to="." method="_on_area_body_shape_entered"]
 [connection signal="timeout" from="attackT" to="player" method="_on_attack_t_timeout"]
 [connection signal="timeout" from="attackT" to="enemy" method="_on_attack_t_timeout"]

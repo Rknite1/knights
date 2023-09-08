@@ -23,7 +23,6 @@ func _process(delta):
 		if  $player/animations.flip_h == false:
 			$player/attack.flip_h = false
 			$player/attack.set_offset(Vector2(10,-8))
+#	$enemy.position.y += 5
+#	$player.position.y += 5
 
-
-func _on_area_area_entered(area):
-	$enemy.hide() # Replace with function body.

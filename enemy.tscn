@@ -148,8 +148,8 @@ animation = &"attack"
 sprite_frames = SubResource("SpriteFrames_7kf2p")
 animation = &"walk"
 
-[node name="timer" type="Timer" parent="."]
-wait_time = 3.0
+[node name="dieend" type="Timer" parent="animate"]
+wait_time = 0.9
 
 [node name="attacktimer" type="Timer" parent="."]
 
@@ -159,7 +159,6 @@ wait_time = 3.0
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_iokka")
 
-[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
 [connection signal="area_entered" from="Earea" to="." method="_on_earea_area_entered"]
 [connection signal="body_shape_entered" from="Earea" to="." method="_on_earea_body_shape_entered"]

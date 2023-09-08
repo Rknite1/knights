@@ -212,17 +212,12 @@ offset = Vector2(-10, -8)
 [node name="area" type="Area2D" parent="attack"]
 
 [node name="collision" type="CollisionShape2D" parent="attack/area"]
-position = Vector2(3, -4)
 shape = SubResource("CapsuleShape2D_iwq7i")
-
-[node name="attack2" type="Timer" parent="attack"]
-wait_time = 0.5
 
 [node name="attackend" type="Timer" parent="attack"]
 wait_time = 0.7
 
 [connection signal="timeout" from="animations/jumpend" to="." method="_on_jumpend_timeout"]
 [connection signal="timeout" from="animations/rollend" to="." method="_on_rollend_timeout"]
-[connection signal="body_shape_entered" from="attack/area" to="." method="_on_area_body_shape_entered"]
-[connection signal="timeout" from="attack/attack2" to="." method="_on_attack_2_timeout"]
+[connection signal="area_entered" from="attack/area" to="." method="_on_area_area_entered"]
 [connection signal="timeout" from="attack/attackend" to="." method="_on_attackend_timeout"]
