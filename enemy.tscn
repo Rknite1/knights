@@ -138,7 +138,7 @@ height = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ijb2"]
 radius = 11.0
-height = 34.0
+height = 38.0
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_3pobm")
@@ -168,7 +168,7 @@ wait_time = 3.0
 [node name="areaE" type="Area2D" parent="."]
 
 [node name="collisionE" type="CollisionShape2D" parent="areaE"]
-position = Vector2(22, -1)
+position = Vector2(22, 1)
 shape = SubResource("CapsuleShape2D_8ijb2")
 
 [connection signal="area_entered" from="Earea" to="." method="_on_earea_area_entered"]

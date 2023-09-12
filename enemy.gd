@@ -5,7 +5,8 @@ var animate = false
 var die = false
 var is_reviving = false
 var attack = false
-var is_dying = false # set to true when the enemy is dying
+var is_dying = false
+var is_walking = true # set to true when the enemy is dying
 
 func _ready():
 	$attacktimer.start()
@@ -25,6 +26,7 @@ func _process(delta):
 	
 
 func dying():
+	is_walking = false
 	is_dying = true
 	$animate.animation = "die"
 	$animate.play()
@@ -48,6 +50,8 @@ func walking(delta):
 
 
 func _on_attacktimer_timeout():
+	if is_walking == false:
+		return
 	attack = true
 	$attack.show()
 	$animate.hide()
