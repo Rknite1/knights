@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://jtcumgdn0vp"]
+[gd_scene load_steps=31 format=3 uid="uid://jtcumgdn0vp"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_3pobm"]
 [ext_resource type="Texture2D" uid="uid://brqiph40ao0dk" path="res://pack_loreon_char_free 2/sword_1/attack1_1.png" id="1_s1fsl"]
@@ -48,7 +48,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_83ewu")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }]
@@ -128,13 +128,17 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("26_vs66m")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk",
 "speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iokka"]
 height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ijb2"]
+radius = 11.0
+height = 34.0
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_3pobm")
@@ -143,23 +147,35 @@ script = ExtResource("1_3pobm")
 position = Vector2(10, -10)
 sprite_frames = SubResource("SpriteFrames_jgn6k")
 animation = &"attack"
+frame = 3
+frame_progress = 0.0286702
 
 [node name="animate" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7kf2p")
 animation = &"die"
-frame_progress = 0.753305
-
-[node name="dieend" type="Timer" parent="animate"]
-wait_time = 0.9
-
-[node name="attacktimer" type="Timer" parent="."]
 
 [node name="Earea" type="Area2D" parent="."]
 
 [node name="Ecollision" type="CollisionShape2D" parent="Earea"]
-position = Vector2(0, 3)
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_iokka")
 
-[connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
+[node name="attacktimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="attackendE" type="Timer" parent="attacktimer"]
+
+[node name="areaE" type="Area2D" parent="."]
+
+[node name="collisionE" type="CollisionShape2D" parent="areaE"]
+position = Vector2(22, -1)
+shape = SubResource("CapsuleShape2D_8ijb2")
+
 [connection signal="area_entered" from="Earea" to="." method="_on_earea_area_entered"]
 [connection signal="body_shape_entered" from="Earea" to="." method="_on_earea_body_shape_entered"]
+[connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
+[connection signal="timeout" from="attacktimer/attackendE" to="." method="_on_attackend_e_timeout"]
+[connection signal="area_entered" from="areaE" to="." method="_on_area_e_area_entered"]
+[connection signal="area_shape_entered" from="areaE" to="." method="_on_area_e_area_shape_entered"]
+[connection signal="body_entered" from="areaE" to="." method="_on_area_e_body_entered"]
+[connection signal="body_shape_entered" from="areaE" to="." method="_on_area_e_body_shape_entered"]

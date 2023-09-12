@@ -27,7 +27,7 @@ position = Vector2(259, 183)
 scale = Vector2(5.912, 5)
 
 [node name="enemy" parent="." instance=ExtResource("3_j41vg")]
-position = Vector2(622, 192)
+position = Vector2(623, 184)
 scale = Vector2(5, 5)
 
 [node name="attackT" type="Timer" parent="."]

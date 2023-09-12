@@ -9,6 +9,8 @@ var playing = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$attack.hide()
+	$animations.animation = "ready"
+	$animations.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -20,7 +22,6 @@ func _process(delta):
 		$animations.animation = "roll"
 		$animations.play()
 		$animations.flip_v = false
-		$animations/rollend.start()
 	if Input.is_action_just_pressed("up"):
 		$animations.show()
 #		$attack.hide()
@@ -28,9 +29,8 @@ func _process(delta):
 		playing = true
 		$animations.play()
 		$animations.flip_v = false
-		$animations/jumpend.start()
 	if Input.is_action_pressed("right"):
-		$attack/area.position.x = 22
+		$attack/area.position.x = 20
 		$attack/area.position.y = 0
 		$animations.show()
 #		$attack.hide()
@@ -43,7 +43,7 @@ func _process(delta):
 			$animations.hide()
 			$attack.show()
 	if Input.is_action_pressed("left"):
-		$attack/area.position.x = -22
+		$attack/area.position.x = -26
 		$attack/area.position.y = 0
 		$animations.show()
 #		$attack.hide()
@@ -68,6 +68,7 @@ func _process(delta):
 		$animations.hide()
 		$attack.animation = "attack"
 		$attack.play()
+		$attack/attackend.start()
 		
 		if $animations.flip_h == true:
 			$attack.flip_h = true
@@ -81,28 +82,28 @@ func _process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 
-func _on_rollend_timeout():
-	$animations.stop() # Replace with function body.
 
-func _on_jumpend_timeout():
-	$animations.stop()
-	playing = false 
 
 func _on_attack_2_timeout():
 	pass # Replace with function body.
 
-func _on_area_area_entered(area_that_is_entered):
-#	if $attack.is_playing():
-#		print("you've hit the enemy:", area_that_is_entered)
-#		area_that_is_entered.get_parent().dying()
-#		# we've hit the enemy
-#	else:
-#		# we're not attacking so ignore the action
-#		return
+func _on_area_area_entered(enemy):
+	if $attack.is_playing():
+		print("you've hit the enemy:", enemy)
+		enemy.get_parent().dying() 
+		# we've hit the enemy
+	else:
+#		 we're not attacking so ignore the action
+		return
 	return
-
-
-
+ 
 func _on_attack_animation_finished():
+	pass
+	
+func _on_attackend_timeout():
 	$attack.hide()
-	$animations.show()
+	$animations.show() # Replace with function body.
+
+func death():
+	$animations.animation = "death"
+	$animations.play()

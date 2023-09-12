@@ -4,11 +4,11 @@ var speed = 105
 var animate = false
 var die = false
 var is_reviving = false
-
+var attack = false
 var is_dying = false # set to true when the enemy is dying
 
 func _ready():
-	pass
+	$attacktimer.start()
 var screen_size
 
 func _process(delta):
@@ -16,15 +16,13 @@ func _process(delta):
 	
 	walking(delta)
 	
+
+	
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 
-func _on_attacktimer_timeout():
-	$attack.animation = "attack"
-	$attack.stop() 
-	$attack.hide()
-	$animate.show()
-	animate = false# Replace with function body.
+	
+	
 
 func dying():
 	is_dying = true
@@ -35,14 +33,40 @@ func resurection():
 	is_reviving = true
 	$animate.animation = "die"
 	$animate.play_backwards()
-	
-func walking(delta):
-	if is_dying:
-		return
-		
-	$animate.animation = "walk"
-	$animate.play()
-	position.x += speed * delta
 
-func _on_earea_area_entered(area):
-	dying()
+
+func walking(delta):
+	if is_dying == true:
+		return
+	if attack == false:
+		$animate.animation = "walk"
+		$animate.play()
+		position.x += speed * delta
+
+#func _on_earea_area_entered(area):
+#	dying()
+
+
+func _on_attacktimer_timeout():
+	attack = true
+	$attack.show()
+	$animate.hide()
+	$attack.animation = "attack"
+	$attack.play()
+	$attacktimer/attackendE.start()
+	$attacktimer.start()
+	#Replace with function body.
+
+
+func _on_attackend_e_timeout():
+	attack = false
+	$animate.show()
+	$attack.hide() #  # Replace with function body.
+
+
+
+
+
+
+
+

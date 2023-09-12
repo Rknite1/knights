@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b254jgyjn0ayk"]
+[gd_scene load_steps=42 format=3 uid="uid://b254jgyjn0ayk"]
 
 [ext_resource type="Texture2D" uid="uid://bwuwg1mx02fo5" path="res://art/sprites_viking_axe/axe_origin/attack1_1.png" id="1_3nopx"]
 [ext_resource type="Script" path="res://player.gd" id="1_qiuso"]
@@ -156,7 +156,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("36_r6wue")
 }],
-"loop": true,
+"loop": false,
 "name": &"run",
 "speed": 8.0
 }]
@@ -188,24 +188,19 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iwq7i"]
-radius = 16.0
-height = 62.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3l1a"]
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_qiuso")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wk8f5")
-animation = &"jump"
-offset = Vector2(0.064, 2.08189e-12)
-
-[node name="jumpend" type="Timer" parent="animations"]
-
-[node name="rollend" type="Timer" parent="animations"]
-wait_time = 1.1
+animation = &"run"
 
 [node name="attack" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 1)
+visible = false
 sprite_frames = SubResource("SpriteFrames_16uwm")
 animation = &"attack"
 frame = 3
@@ -215,11 +210,17 @@ offset = Vector2(-10, -8)
 [node name="area" type="Area2D" parent="attack"]
 
 [node name="collision" type="CollisionShape2D" parent="attack/area"]
-position = Vector2(-17, -4)
-rotation = 1.5708
+position = Vector2(3, -2)
 shape = SubResource("CapsuleShape2D_iwq7i")
 
-[connection signal="timeout" from="animations/jumpend" to="." method="_on_jumpend_timeout"]
-[connection signal="timeout" from="animations/rollend" to="." method="_on_rollend_timeout"]
-[connection signal="animation_finished" from="attack" to="." method="_on_attack_animation_finished"]
+[node name="attackend" type="Timer" parent="attack"]
+wait_time = 0.6
+
+[node name="playerC" type="Area2D" parent="."]
+
+[node name="collsionP" type="CollisionShape2D" parent="playerC"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_e3l1a")
+
 [connection signal="area_entered" from="attack/area" to="." method="_on_area_area_entered"]
+[connection signal="timeout" from="attack/attackend" to="." method="_on_attackend_timeout"]
