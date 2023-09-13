@@ -1,8 +1,7 @@
 extends Node2D
 var screen_size
 @export var enemy_scene: PackedScene
-
-# Called when the node enters the scene tree for the first time.
+var enemy# Called when the node enters the scene tree for the first time.
 func _ready():
 	$player/attack.hide()
 	$enemy/attack.hide() # Replace with function body.
@@ -22,6 +21,5 @@ func _process(delta):
 		if  $player/animations.flip_h == false:
 			$player/attack.flip_h = false
 			$player/attack.set_offset(Vector2(10,-8))
-#	$enemy.position.y += 5
-#	$player.position.y += 5
-
+	
+		

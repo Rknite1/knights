@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jtcumgdn0vp"]
+[gd_scene load_steps=32 format=3 uid="uid://jtcumgdn0vp"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_3pobm"]
 [ext_resource type="Texture2D" uid="uid://brqiph40ao0dk" path="res://pack_loreon_char_free 2/sword_1/attack1_1.png" id="1_s1fsl"]
@@ -52,6 +52,25 @@ animations = [{
 "name": &"attack",
 "speed": 5.0
 }]
+
+[sub_resource type="GDScript" id="GDScript_pqpxu"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(enemy):
+	pass
+	
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ijb2"]
+radius = 11.0
+height = 38.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7kf2p"]
 animations = [{
@@ -136,10 +155,6 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iokka"]
 height = 32.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ijb2"]
-radius = 11.0
-height = 38.0
-
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_3pobm")
 
@@ -150,11 +165,22 @@ animation = &"attack"
 frame = 3
 frame_progress = 0.0286702
 
+[node name="areaE" type="Area2D" parent="attack"]
+position = Vector2(-10, 10)
+collision_layer = 0
+collision_mask = 2
+script = SubResource("GDScript_pqpxu")
+
+[node name="collisionE" type="CollisionShape2D" parent="attack/areaE"]
+position = Vector2(22, 1)
+shape = SubResource("CapsuleShape2D_8ijb2")
+
 [node name="animate" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7kf2p")
 animation = &"die"
 
 [node name="Earea" type="Area2D" parent="."]
+collision_mask = 0
 
 [node name="Ecollision" type="CollisionShape2D" parent="Earea"]
 position = Vector2(0, 5)
@@ -165,17 +191,15 @@ wait_time = 3.0
 
 [node name="attackendE" type="Timer" parent="attacktimer"]
 
-[node name="areaE" type="Area2D" parent="."]
+[node name="dead" type="Timer" parent="."]
+wait_time = 2.0
 
-[node name="collisionE" type="CollisionShape2D" parent="areaE"]
-position = Vector2(22, 1)
-shape = SubResource("CapsuleShape2D_8ijb2")
-
+[connection signal="area_entered" from="attack/areaE" to="." method="_on_area_e_area_entered"]
+[connection signal="area_shape_entered" from="attack/areaE" to="." method="_on_area_e_area_shape_entered"]
+[connection signal="body_entered" from="attack/areaE" to="." method="_on_area_e_body_entered"]
+[connection signal="body_shape_entered" from="attack/areaE" to="." method="_on_area_e_body_shape_entered"]
 [connection signal="area_entered" from="Earea" to="." method="_on_earea_area_entered"]
 [connection signal="body_shape_entered" from="Earea" to="." method="_on_earea_body_shape_entered"]
 [connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
 [connection signal="timeout" from="attacktimer/attackendE" to="." method="_on_attackend_e_timeout"]
-[connection signal="area_entered" from="areaE" to="." method="_on_area_e_area_entered"]
-[connection signal="area_shape_entered" from="areaE" to="." method="_on_area_e_area_shape_entered"]
-[connection signal="body_entered" from="areaE" to="." method="_on_area_e_body_entered"]
-[connection signal="body_shape_entered" from="areaE" to="." method="_on_area_e_body_shape_entered"]
+[connection signal="timeout" from="dead" to="." method="_on_dead_timeout"]

@@ -53,7 +53,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_6bxt1")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -67,7 +67,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_fdfg7")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 5.0
 }, {
@@ -197,10 +197,9 @@ script = ExtResource("1_qiuso")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wk8f5")
-animation = &"run"
+animation = &"death"
 
 [node name="attack" type="AnimatedSprite2D" parent="."]
-visible = false
 sprite_frames = SubResource("SpriteFrames_16uwm")
 animation = &"attack"
 frame = 3
@@ -208,6 +207,7 @@ frame_progress = 0.405485
 offset = Vector2(-10, -8)
 
 [node name="area" type="Area2D" parent="attack"]
+collision_layer = 0
 
 [node name="collision" type="CollisionShape2D" parent="attack/area"]
 position = Vector2(3, -2)
@@ -217,6 +217,9 @@ shape = SubResource("CapsuleShape2D_iwq7i")
 wait_time = 0.6
 
 [node name="playerC" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 0
 
 [node name="collsionP" type="CollisionShape2D" parent="playerC"]
 position = Vector2(0, 1)

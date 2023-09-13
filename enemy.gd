@@ -7,6 +7,7 @@ var is_reviving = false
 var attack = false
 var is_dying = false
 var is_walking = true # set to true when the enemy is dying
+var dead_forever = false
 
 func _ready():
 	$attacktimer.start()
@@ -16,7 +17,7 @@ func _process(delta):
 	screen_size = get_viewport_rect().size
 	
 	walking(delta)
-	
+	attacking()
 
 	
 	position.x = clamp(position.x, 0, screen_size.x)
@@ -30,8 +31,11 @@ func dying():
 	is_dying = true
 	$animate.animation = "die"
 	$animate.play()
+	$dead.start()
 
 func resurection():
+	if dead_forever == true:
+		return
 	is_reviving = true
 	$animate.animation = "die"
 	$animate.play_backwards()
@@ -68,9 +72,21 @@ func _on_attackend_e_timeout():
 	$attack.hide() #  # Replace with function body.
 
 
+func attacking():
+	var overlapping_areas = $attack/areaE.get_overlapping_areas()
+	print("on_attack, overlapping areas: ", overlapping_areas)
+	for x in overlapping_areas:
+		if $attack.is_playing():
+			x.get_parent().death() 
+		else:
+			return
+	
 
 
 
 
 
 
+
+func _on_dead_timeout():
+	hide() # Replace with function body.
